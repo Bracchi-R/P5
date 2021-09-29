@@ -1,0 +1,23 @@
+header {
+    height: 200px;
+    background-image: url("../../img/image-1.png");
+}
+
+.header {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    
+
+    .titre {
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-left: 50px;
+    }
+
+    .panier {
+        margin-top: auto;
+        margin-right: 50px;
+        margin-bottom: auto
+    }
+}

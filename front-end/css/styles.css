@@ -1,0 +1,83 @@
+/* sass sass/main.scss:css/styles.css --watch */
+main {
+  width: 90%;
+  text-align: center;
+  margin: auto;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+body {
+  width: 100%;
+  margin: 0;
+  font-size: 20px;
+  line-height: 35px;
+}
+
+header {
+  height: 200px;
+  background-image: url("../../img/image-1.png");
+}
+
+.header {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.header .titre {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 50px;
+}
+.header .panier {
+  margin-top: auto;
+  margin-right: 50px;
+  margin-bottom: auto;
+}
+
+.product__titre {
+  margin-top: 70px;
+  margin-bottom: 70px;
+  text-decoration: underline;
+  text-align: left;
+}
+
+.products {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.product {
+  margin: auto;
+  margin-bottom: 20px;
+}
+.product a {
+  display: flex;
+  flex-direction: row;
+  width: 500px;
+  height: 200px;
+  border: solid;
+}
+.product a .product__img {
+  width: 300px;
+  height: 200px;
+}
+.product a .product__info {
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.product a .product__info .product__info__name {
+  margin-left: 30px;
+}
+.product a .product__info .product__info__price {
+  margin-bottom: 10px;
+  text-align: right;
+}
+
+/*# sourceMappingURL=styles.css.map */
