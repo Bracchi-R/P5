@@ -90,13 +90,29 @@ h2 {
   text-decoration: underline;
 }
 
-.cart__product .cart__img {
+.carte__product .carte__img {
   width: 600px;
   height: 400px;
 }
-.cart__product .cart__info .cart__name__titre, .cart__product .cart__info .cart__description__titre, .cart__product .cart__info .cart__price__titre {
+.carte__product .carte__info {
+  margin-bottom: 10px;
+}
+.carte__product .carte__info .carte__name__titre, .carte__product .carte__info .carte__description__titre, .carte__product .carte__info .carte__price__titre, .carte__product .carte__info .objectif__titre, .carte__product .carte__info .carte__nombre__titre {
   text-decoration: underline;
   font-weight: bold;
+}
+.carte__product .carte__info .objectif__titre, .carte__product .carte__info .carte__nombre__titre {
+  margin-right: 10px;
+}
+.carte__product .carte__info .flex {
+  display: flex;
+  justify-content: center;
+}
+.carte__product .add {
+  background-color: black;
+  color: white;
+  padding: 10px;
+  border-radius: 25px;
 }
 
 /*# sourceMappingURL=styles.css.map */

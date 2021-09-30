@@ -1,0 +1,38 @@
+h2 {
+    text-decoration: underline;
+}
+
+.carte__product {
+    
+    .carte__img {
+        width: 600px;
+        height: 400px;
+    } 
+
+    .carte__info {
+        margin-bottom: 10px;
+
+        .carte__name__titre, .carte__description__titre, .carte__price__titre, .objectif__titre, .carte__nombre__titre {
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        .objectif__titre, .carte__nombre__titre {
+            margin-right: 10px;
+        }
+
+        .flex {
+            display: flex;
+            justify-content: center;
+
+        }
+    }
+
+    .add {
+        background-color: black; 
+        color: white;
+        padding: 10px;
+        border-radius: 25px;
+    } 
+}
+
