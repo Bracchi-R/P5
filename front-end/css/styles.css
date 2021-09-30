@@ -72,12 +72,31 @@ header {
   flex-direction: column;
   justify-content: space-between;
 }
+.product a .product__info .product__name__titre, .product a .product__info .product__price__titre {
+  text-align: left;
+  margin-left: 10px;
+  text-decoration: underline;
+  font-weight: bold;
+}
 .product a .product__info .product__info__name {
   margin-left: 30px;
 }
 .product a .product__info .product__info__price {
   margin-bottom: 10px;
   text-align: right;
+}
+
+h2 {
+  text-decoration: underline;
+}
+
+.cart__product .cart__img {
+  width: 600px;
+  height: 400px;
+}
+.cart__product .cart__info .cart__name__titre, .cart__product .cart__info .cart__description__titre, .cart__product .cart__info .cart__price__titre {
+  text-decoration: underline;
+  font-weight: bold;
 }
 
 /*# sourceMappingURL=styles.css.map */

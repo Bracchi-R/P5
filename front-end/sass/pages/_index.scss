@@ -32,6 +32,13 @@
         flex-direction: column;
         justify-content: space-between;
 
+        .product__name__titre, .product__price__titre {
+            text-align: left;
+            margin-left: 10px;
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
         .product__info__name {
             margin-left: 30px;
         }

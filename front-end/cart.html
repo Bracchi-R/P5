@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fiche produit</title>
 
@@ -10,32 +11,40 @@
 </head>
 <body>
     <header>
-        <div>
-            <a href="index.html"><h1>Caméras Vintage</h1></a>
+        <div class="header">
+            <a href="index.html" class="titre"><h1>Caméras Vintage</h1></a>
+            <a href="panier.html" class="panier">Panier</a>
         </div>
     </header>
     <main>
         <div>
-            <div>
-                <h2>Description du produit</h2>
-                </div>                
+            <h2>Description du produit</h2>               
         </div>
         <div>
-            <h3>Produit</h3>
-            <div>
+            
                 <div id="cart" class="cart">
 
                     <template id="templateArticle">
                         <div class="cart__product">
                             
                                 <div>
-                                    <img id="card__img" class="card__img" src="" alt="">
+                                    <img id="cart__img" class="cart__img" src="" alt="">
                                 </div>
                                 <div class="cart__info">
-                                    <div id="cart__info__name" class="cart__info__name"></div>
-                                    <div id="cart__info__description" class="cart__info__description"></div>
-                                    <div id="cart__info__price" class="cart__info__price"></div>
-                                </div>
+                                    <div>
+                                        <div id="cart__name__titre" class="cart__name__titre"></div>
+                                        <div id="cart__info__name" class="cart__info__name"></div>
+                                    </div>
+                                    <div>
+                                        <div id="cart__description__titre" class="cart__description__titre"></div>
+                                        <div id="cart__info__description" class="cart__info__description"></div>
+                                    </div>
+                                    <div>
+                                        <div id="cart__price__titre" class="cart__price__titre"></div>
+                                        <div id="cart__info__price" class="cart__info__price"></div>
+                                    </div>
+
+                                  </div>
                                 <!--
                                 <div>
                                     <select name="objectif" id="objectif">
@@ -48,7 +57,7 @@
                     </template>
 
                 </div>
-            </div>
+            
         </div>
     </main>
     <footer>

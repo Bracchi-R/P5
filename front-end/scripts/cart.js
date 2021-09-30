@@ -36,9 +36,12 @@ function hydrateArticle(article) {
 
   /* ajouter les informations recuperer dans API dans les clones */
   cloneElt.getElementById("cart__img").src = article.imageUrl
+  cloneElt.getElementById("cart__name__titre").textContent = `Nom :`
   cloneElt.getElementById("cart__info__name").textContent = article.name
+  cloneElt.getElementById("cart__description__titre").textContent = `Description :`
   cloneElt.getElementById("cart__info__description").textContent = article.description
-  cloneElt.getElementById("cart__info__price").textContent = article.price
+  cloneElt.getElementById("cart__price__titre").textContent = `Prix :`
+  cloneElt.getElementById("cart__info__price").textContent = article.price+` €`
 
   /* integration du clone dans le HTML */
   document.getElementById("cart").appendChild(cloneElt)
