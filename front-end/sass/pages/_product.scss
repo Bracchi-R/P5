@@ -17,8 +17,13 @@ h2 {
             font-weight: bold;
         }
 
-        .objectif__titre, .carte__nombre__titre {
+        .objectif__titre, .carte__nombre__titre, .carte__description__titre {
             margin-right: 10px;
+        }
+
+        .description {
+            display: flex;
+            justify-content: center;
         }
 
         .flex {
@@ -26,6 +31,8 @@ h2 {
             justify-content: center;
 
         }
+
+        
     }
 
     .add {
@@ -36,3 +43,18 @@ h2 {
     } 
 }
 
+
+
+
+/*
+
+input, textarea {
+    border: none;
+    outline-width: 0;
+}
+
+.carte__info__description {
+    height: 100px;
+}
+
+*/

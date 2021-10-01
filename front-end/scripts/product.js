@@ -3,7 +3,6 @@ main()
 async function main() {
     const articleId = getArticleId()
     const article = await getArticle(articleId)
-    console.log(article)
     hydrateArticle(article)
   }
 
@@ -37,12 +36,12 @@ function hydrateArticle(article) {
   cloneElt.getElementById("carte__name__titre").textContent = `Nom :`
   cloneElt.getElementById("carte__info__name").textContent = article.name
   cloneElt.getElementById("carte__description__titre").textContent = `Description :`
-  cloneElt.getElementById("carte__info__description").textContent = article.description
+  cloneElt.getElementById("carte__info__description").textContent= article.description
   cloneElt.getElementById("carte__price__titre").textContent = `Prix :`
-  cloneElt.getElementById("carte__info__price").textContent = article.price+` €/UT`
+  cloneElt.getElementById("carte__info__price").textContent= article.price+` €/UT`
   cloneElt.getElementById("objectif__titre").textContent = `Type :`
 
-  /* creation de mla boucle pour les diferents option */
+  /* creation de la boucle pour les diferents option */
   let type = cloneElt.getElementById("objectif");
       for (let i = 0; i < article.lenses.length; i++) {
         let option = document.createElement("option");
@@ -50,7 +49,7 @@ function hydrateArticle(article) {
         type.appendChild(option);
       }
 
-  cloneElt.getElementById("carte__nombre__titre").textContent = `Nombre :`
+  cloneElt.getElementById("carte__nombre__titre").textContent = `Quantité :`
 
   let nomb = cloneElt.getElementById("nombre__choix");
   let nombre = 0;
@@ -62,13 +61,44 @@ function hydrateArticle(article) {
   
   cloneElt.getElementById("add").textContent = `Ajouter au panier`
   
-
-
-
   /* integration du clone dans le HTML */
   document.getElementById("carte").appendChild(cloneElt)
   
+
+/* localStorage */
+/* recuperation du button */
+let btn = document.getElementById("add");
+console.log(btn);
+
+/* envoi dans le storage au click */
+btn.addEventListener("click", () => {
+  
+  
+  localStorage.setItem("nom", document.getElementById("carte__info__name").textContent);
+  localStorage.setItem("type", "aaa");
+  localStorage.setItem("nombre","bbb");
+  localStorage.setItem("prix", document.getElementById("carte__info__price").textContent);
+
+  
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
+
+
 
 
 
