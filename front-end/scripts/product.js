@@ -24,91 +24,48 @@ function getArticle(articleId) {
     })
   }
 
+
 /* affichage de l'articles */
 function hydrateArticle(article) {
-  /* recuteration de l'éllement */
-  const templateElt = document.getElementById("templateArticle")
-  /* creation du clone */
-  const cloneElt = document.importNode(templateElt.content, true)
+    // recuteration de l'éllement
+    const cam = document.getElementById("carte")
 
-  /* ajouter les informations recuperer dans API dans les clones */
-  cloneElt.getElementById("carte__img").src = article.imageUrl
-  cloneElt.getElementById("carte__name__titre").textContent = `Nom :`
-  cloneElt.getElementById("carte__info__name").textContent = article.name
-  cloneElt.getElementById("carte__description__titre").textContent = `Description :`
-  cloneElt.getElementById("carte__info__description").textContent= article.description
-  cloneElt.getElementById("carte__price__titre").textContent = `Prix :`
-  cloneElt.getElementById("carte__info__price").textContent= article.price+` €/UT`
-  cloneElt.getElementById("objectif__titre").textContent = `Type :`
+     // création h3 de la page avec le nom de l'article
+    const name = document.createElement('h3');
+    cam.appendChild(name);
+    name.textContent = article.name;
 
-  /* creation de la boucle pour les diferents option */
-  let type = cloneElt.getElementById("objectif");
-      for (let i = 0; i < article.lenses.length; i++) {
+    // création de la div de L'article
+    const info = document.createElement('div');
+    cam.appendChild(info);
+
+    // ajout de l'image à la div 
+    const img = document.createElement('img');
+    info.appendChild(img);
+    img.setAttribute('src', article.imageUrl);
+
+    // création div des detail de l'article
+    const detail = document.createElement('div');
+    info.appendChild(detail);
+
+    // ajout la description aux details
+    const description = document.createElement('p');
+    detail.appendChild(description);
+    description.textContent = article.description;
+
+    // creation de la boucle pour les diferents option dans les details
+    let type = document.createElement('select');
+    detail.appendChild(option);
+    for (let i = 0; i < article.lenses.length; i++) {
         let option = document.createElement("option");
         option.innerText = article.lenses[i];
         type.appendChild(option);
-      }
+    }
 
-  cloneElt.getElementById("carte__nombre__titre").textContent = `Quantité :`
-
-  let nomb = cloneElt.getElementById("nombre__choix");
-  let nombre = 0;
-      for (let i = 0; i < nombre; i++) {
-        let option = document.createElement("option");
-        option.innerText = nombre[i];
-        type.appendChild(option);
-      }
+    // ajout du prix aux details
+    const price = document.createElement('p');
+    detail.appendChild(price);
+    price.textContent = article.price + " €";
+    
+  }
   
-  cloneElt.getElementById("add").textContent = `Ajouter au panier`
-  
-  /* integration du clone dans le HTML */
-  document.getElementById("carte").appendChild(cloneElt)
-  
-
-/* localStorage */
-/* recuperation du button */
-let btn = document.getElementById("add");
-console.log(btn);
-
-/* envoi dans le storage au click */
-btn.addEventListener("click", () => {
-  
-  
-  localStorage.setItem("nom", document.getElementById("carte__info__name").textContent);
-  localStorage.setItem("type", "aaa");
-  localStorage.setItem("nombre","bbb");
-  localStorage.setItem("prix", document.getElementById("carte__info__price").textContent);
-
-  
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

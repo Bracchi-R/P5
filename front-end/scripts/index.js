@@ -30,20 +30,37 @@ function getArticles() {
 
 /* affichage des articles */
 function displayArticle(article) {
-  /* recuteration de l'éllement */
-  const templateElt = document.getElementById("templateArticle")
-  /* creation du clone */
-  const cloneElt = document.importNode(templateElt.content, true)
+  const camsDiv = document.getElementById('products');
 
-  /* ajouter les informations recuperer dans API dans les clones */
-  cloneElt.getElementById("product__img").src = article.imageUrl
-  cloneElt.getElementById("product__name__titre").textContent = `Nom de l'article :`
-  cloneElt.getElementById("product__info__name").textContent = article.name
-  cloneElt.getElementById("product__price__titre").textContent = `Prix :`
-  cloneElt.getElementById("product__info__price").textContent = article.price+` €`
-  cloneElt.getElementById("product__card").href += `?id=${article._id}`
+  //création section "cam"
+  const camsSection = document.createElement('section');
+  camsDiv.appendChild(camsSection);
+  camsSection.className = 'cam';
 
-  /* integration du clone dans le HTML */
-  document.getElementById("products").appendChild(cloneElt)
+  //création du lien vers produit.html pour chaque article
+  const link = document.createElement("a");
+  link.href = "product.html?id=" + article._id;
+  camsSection.appendChild(link);
+  link.className = 'cam__card"';
+
+  //création image 
+  const img = document.createElement('img');
+  link.appendChild(img);
+  img.setAttribute('src', article.imageUrl);
+
+  //création div Ref
+  const ref = document.createElement('div');
+  link.appendChild(ref);
+  ref.className = 'ref';
+
+  //création h4 de Ref pour aficher le nom
+  const name = document.createElement('h4');
+  ref.appendChild(name);
+  name.textContent = article.name;
+
+  //création p de Ref pour afficher le prix
+  const price = document.createElement('p');
+  ref.appendChild(price);
+  price.textContent = article.price + " €";
   
 }
