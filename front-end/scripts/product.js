@@ -54,18 +54,47 @@ function hydrateArticle(article) {
     description.textContent = article.description;
 
     // creation de la boucle pour les diferents option dans les details
-    let type = document.createElement('select');
+    /*let type =  document.createElement('select');
     detail.appendChild(option);
     for (let i = 0; i < article.lenses.length; i++) {
         let option = document.createElement("option");
         option.innerText = article.lenses[i];
         type.appendChild(option);
-    }
+    }*/
 
     // ajout du prix aux details
     const price = document.createElement('p');
     detail.appendChild(price);
     price.textContent = article.price + " €";
     
+    // création de la div button
+    const button = document.createElement('div');
+    cam.appendChild(button);
+
+    // création du boutton ajouter au panier
+    const add = document.createElement('button');
+    button.appendChild(add);
+    add.textContent = "Ajouter au panier";
+
+    /* envoi dans le storage au click */
+    add.addEventListener("click", () => {
+      let data = {
+        camName: article.name,
+        camId: article._id,
+        camPrice: article.price,
+      };
+
+      let storedCams = JSON.parse(localStorage.getItem('newArticle'));
+      if(storedCams) {
+        storedCams.push(data);
+        localStorage.setItem('newArticle', JSON.stringify(storedCams));
+      } else {
+        storedCams = [];
+        storedCams.push(data);
+        localStorage.setItem('newArticle', JSON.stringify(storedCams));
+
+      }
+
+    });
   }
   
