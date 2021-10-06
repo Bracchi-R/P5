@@ -50,86 +50,122 @@ header {
   flex-direction: row;
   flex-wrap: wrap;
 }
-
-.product {
+.products .cam {
   margin: auto;
   margin-bottom: 20px;
 }
-.product a {
+.products .cam .cam__card {
   display: flex;
   flex-direction: row;
   width: 500px;
   height: 200px;
   border: solid;
 }
-.product a .product__img {
+.products .cam .cam__card img {
   width: 300px;
   height: 200px;
 }
-.product a .product__info {
+.products .cam .cam__card .cam__card__ref {
   height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding-right: 15px;
 }
-.product a .product__info .product__name__titre, .product a .product__info .product__price__titre {
-  text-align: left;
-  margin-left: 10px;
-  text-decoration: underline;
-  font-weight: bold;
-}
-.product a .product__info .product__info__name {
+.products .cam .cam__card .cam__card__ref .cam__card__ref__name {
   margin-left: 30px;
 }
-.product a .product__info .product__info__price {
+.products .cam .cam__card .cam__card__ref .cam__card__ref__price {
   margin-bottom: 10px;
   text-align: right;
 }
 
-h2 {
+.titre {
   text-decoration: underline;
 }
 
-.carte__product .carte__img {
+.carte .carte__name {
+  font-style: italic;
+  font-size: 25px;
+}
+.carte .carte__article .carte__article__img {
   width: 600px;
   height: 400px;
 }
-.carte__product .carte__info {
-  margin-bottom: 10px;
+.carte .carte__article .carte__article__detail .carte__article__detail__description {
+  font-size: 23px;
 }
-.carte__product .carte__info .carte__name__titre, .carte__product .carte__info .carte__description__titre, .carte__product .carte__info .carte__price__titre, .carte__product .carte__info .objectif__titre, .carte__product .carte__info .carte__nombre__titre {
-  text-decoration: underline;
-  font-weight: bold;
+.carte .carte__article .carte__article__detail .carte__article__detail__option .carte__article__detail__option__name {
+  font-size: 23px;
 }
-.carte__product .carte__info .objectif__titre, .carte__product .carte__info .carte__nombre__titre, .carte__product .carte__info .carte__description__titre {
-  margin-right: 10px;
+.carte .carte__article .carte__article__detail .carte__article__detail__price {
+  font-size: 30px;
 }
-.carte__product .carte__info .description {
-  display: flex;
-  justify-content: center;
-}
-.carte__product .carte__info .flex {
-  display: flex;
-  justify-content: center;
-}
-.carte__product .add {
+.carte .carte__button .carte__button__add {
+  font-size: 30px;
   background-color: black;
   color: white;
   padding: 10px;
   border-radius: 25px;
 }
 
-/*
-
-input, textarea {
-    border: none;
-    outline-width: 0;
+.client .form {
+  text-align: left;
 }
-
-.carte__info__description {
-    height: 100px;
+.client .form .form__prenom {
+  display: flex;
+  margin-bottom: 5px;
 }
-
-*/
+.client .form .form__prenom .form__prenom__label {
+  width: 7em;
+  display: block;
+}
+.client .form .form__nom {
+  display: flex;
+  margin-bottom: 5px;
+}
+.client .form .form__nom .form__nom__label {
+  width: 7em;
+  display: block;
+}
+.client .form .form__email {
+  display: flex;
+  margin-bottom: 5px;
+}
+.client .form .form__email .form__email__label {
+  width: 7em;
+  display: block;
+}
+.client .form .form__adresse {
+  display: flex;
+  margin-bottom: 5px;
+}
+.client .form .form__adresse .form__adresse__block {
+  display: flex;
+  margin-right: 5px;
+}
+.client .form .form__adresse .form__adresse__block .form__adresse__block__label {
+  width: 7em;
+  display: block;
+}
+.client .form .form__adresse .form__adresse__ville {
+  display: flex;
+  margin-right: 5px;
+}
+.client .form .form__adresse .form__adresse__ville .form__adresse__ville__label {
+  width: 7em;
+  display: block;
+}
+.client .form .form__adresse .form__adresse__code {
+  display: flex;
+}
+.client .form .form__adresse .form__adresse__code .form__adresse__code__label {
+  width: 7em;
+  display: block;
+}
+.client .form .form__divbutton .form__divbutton__add {
+  width: 150px;
+  height: 50px;
+}
 
 /*# sourceMappingURL=styles.css.map */

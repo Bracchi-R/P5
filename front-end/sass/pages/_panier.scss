@@ -1,0 +1,102 @@
+.client {
+    .client__intro {
+        
+    }
+
+    .form {
+        text-align: left;
+
+        .form__prenom {
+            display: flex;
+            margin-bottom: 5px;
+            
+            .form__prenom__label {
+                width: 7em;
+                display: block;
+            }
+
+            .form__prenom__input {
+
+            } 
+        }
+
+        .form__nom {
+            display: flex;
+            margin-bottom: 5px;
+
+            .form__nom__label {
+                width: 7em;
+                display: block;
+            }
+
+            .form__nom__input {
+
+            } 
+        }
+
+        .form__email {
+            display: flex;
+            margin-bottom: 5px;
+
+            .form__email__label {
+                width: 7em;
+                display: block;
+            }
+
+            .form__email__input {
+
+            } 
+        }
+
+        .form__adresse {
+            display: flex;
+            margin-bottom: 5px;
+            .form__adresse__block {
+                display: flex;
+                margin-right: 5px;
+
+                .form__adresse__block__label {
+                    width: 7em;
+                    display: block;
+                }
+
+                .form__adresse__block__textarea {
+
+                }
+            }
+
+            .form__adresse__ville {
+                display: flex;
+                margin-right: 5px;
+
+                .form__adresse__ville__label {
+                    width: 7em;
+                    display: block;
+                }
+
+                .form__adresse__ville__input {
+
+                }
+            }
+
+            .form__adresse__code {
+                display: flex;
+                .form__adresse__code__label {
+                    width: 7em;
+                    display: block;
+                }
+
+                .form__adresse__code__input {
+
+                }
+            } 
+        }
+
+        .form__divbutton {
+            .form__divbutton__add {
+                width: 150px;
+                height: 50px;
+            }
+        }
+    }
+}
