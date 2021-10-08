@@ -100,6 +100,7 @@ function hydrateArticle(article) {
       let data = {
         camName: article.name,
         camId: article._id,
+        camPrice: article.price,
       };
 
       let storedCams = JSON.parse(localStorage.getItem('newArticle'));

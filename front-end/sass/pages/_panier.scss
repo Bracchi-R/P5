@@ -1,3 +1,25 @@
+.panier {
+    border: solid;
+    margin-bottom: 10px;
+
+    .panier__article{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 5px;
+        margin-top: 5px;
+
+        p {
+            margin-left: 10px;
+        }
+
+        .cam__sup {
+           
+        }
+    }
+}
+
+
 .client {
     .client__intro {
         
@@ -9,7 +31,8 @@
         .form__prenom {
             display: flex;
             margin-bottom: 5px;
-            
+            margin-left: 5px;
+
             .form__prenom__label {
                 width: 7em;
                 display: block;
@@ -23,6 +46,7 @@
         .form__nom {
             display: flex;
             margin-bottom: 5px;
+            margin-left: 5px;
 
             .form__nom__label {
                 width: 7em;
@@ -37,6 +61,7 @@
         .form__email {
             display: flex;
             margin-bottom: 5px;
+            margin-left: 5px;
 
             .form__email__label {
                 width: 7em;
@@ -51,6 +76,8 @@
         .form__adresse {
             display: flex;
             margin-bottom: 5px;
+            margin-left: 5px;
+
             .form__adresse__block {
                 display: flex;
                 margin-right: 5px;
@@ -96,6 +123,8 @@
             .form__divbutton__add {
                 width: 150px;
                 height: 50px;
+                margin-left: 5px;
+                margin-bottom: 5px;
             }
         }
     }

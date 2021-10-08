@@ -32,7 +32,7 @@ header {
   margin-bottom: auto;
   margin-left: 50px;
 }
-.header .panier {
+.header .btn_panier {
   margin-top: auto;
   margin-right: 50px;
   margin-bottom: auto;
@@ -109,12 +109,27 @@ header {
   border-radius: 25px;
 }
 
+.panier {
+  border: solid;
+  margin-bottom: 10px;
+}
+.panier .panier__article {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+.panier .panier__article p {
+  margin-left: 10px;
+}
 .client .form {
   text-align: left;
 }
 .client .form .form__prenom {
   display: flex;
   margin-bottom: 5px;
+  margin-left: 5px;
 }
 .client .form .form__prenom .form__prenom__label {
   width: 7em;
@@ -123,6 +138,7 @@ header {
 .client .form .form__nom {
   display: flex;
   margin-bottom: 5px;
+  margin-left: 5px;
 }
 .client .form .form__nom .form__nom__label {
   width: 7em;
@@ -131,6 +147,7 @@ header {
 .client .form .form__email {
   display: flex;
   margin-bottom: 5px;
+  margin-left: 5px;
 }
 .client .form .form__email .form__email__label {
   width: 7em;
@@ -139,6 +156,7 @@ header {
 .client .form .form__adresse {
   display: flex;
   margin-bottom: 5px;
+  margin-left: 5px;
 }
 .client .form .form__adresse .form__adresse__block {
   display: flex;
@@ -166,6 +184,8 @@ header {
 .client .form .form__divbutton .form__divbutton__add {
   width: 150px;
   height: 50px;
+  margin-left: 5px;
+  margin-bottom: 5px;
 }
 
 /*# sourceMappingURL=styles.css.map */

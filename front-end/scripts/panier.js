@@ -4,6 +4,7 @@ console.log(storedCams);
 
 // création du panier
 const divPanier = document.getElementById('panier');
+const total = document.getElementById('total');
 
 if(storedCams == null){
     // si le panier est vide
@@ -28,137 +29,204 @@ if(storedCams == null){
          // création du p pour le prix de la cam
          const camPrice = document.createElement('p');
          camDiv.appendChild(camPrice);
+         camPrice.textContent = storedCam.camPrice + " €";
 
+         /*
         // // création du boutton sup de l'article
         const camSup = document.createElement('button');
          camDiv.appendChild(camSup);
          camSup.textContent = "sup";
          camSup.setAttribute("id","cam__sup");
+*/
+        
+
     }
+/*
+     // on récupére l'article associé au bouton sup et suppresion de l'article
+    let btnSup = document.querySelectorAll('#cam__sup');
+    console.log(btnSup);
+    for (let i = 0; i < btnSup.length; i++) {
+        btnSup[i].addEventListener('click', function(event){
 
-    // on récupére l'article associé au bouton sup
-    let sup = document.getElementById('cam__sup');
+            // empêche le rafraîchir la page au clic
+            event.preventDefault();  
+        });
+       
+    };
+ */
 
 
-}
+    // création du prix total de la commande
 
-// création du formulaire du client
-const divClient = document.getElementById('client');
+    let total = []
+    for (storedCam of storedCams) {
+        let totalCam = storedCam.camPrice;
+        total.push(totalCam);
+    };
 
-// intro du formulaire
-const intro = document.createElement('p');
-divClient.appendChild(intro);
-intro.textContent = "Pour valider votre commande, merci de bien remplir ce formulaire : ";
-intro.className = 'client__intro';
+    const reducer = (accumulator, currentValue) => accumulator + currentValue;
+    const totalPrice = total.reduce(reducer, 0);
 
-// création du form
-const form = document.createElement('form');
-divClient.appendChild(form);
-form.className = 'form';
+    const priceTotal = document.createElement('div');
+    divPanier.appendChild(priceTotal);
+    priceTotal.className = 'panier__total';
+    priceTotal.textContent = "Le total de votre commande est de : " + totalPrice + " €";
 
-// ajout du prenom au formulaire
-const divFirstName = document.createElement('div');
-form.appendChild(divFirstName);
-divFirstName.className = 'form__prenom';
 
-const clientFirstName = document.createElement('label');
-divFirstName.appendChild(clientFirstName);
-clientFirstName.textContent = "Prenom : ";
-clientFirstName.className = 'form__prenom__label';
+    // création du bouton vide panier
+    const suppanier = document.getElementById('suppanier');
+    const boutonSup = document.createElement('button');
+    suppanier.appendChild(boutonSup);
+    boutonSup.textContent = "vider votre Panier";
+    /*
+    boutonSup.addEventListener("click", () => {
+        storage.clear();
+        alert('Votre panier a bien été vidé !'
+        )};
+    */
 
-const clientFirstNameInput = document.createElement('input');
-clientFirstNameInput.setAttribute("type","texte");
-divFirstName.appendChild(clientFirstNameInput);
-clientFirstNameInput.className = 'form__prenom__input';
+    // création du formulaire du client
+    const divClient = document.getElementById('client');
 
-// ajout du nom au formulaire
-const divLastName = document.createElement('div');
-form.appendChild(divLastName);
-divLastName.className = 'form__nom';
+    // intro du formulaire
+    const intro = document.createElement('p');
+    divClient.appendChild(intro);
+    intro.textContent = "Pour valider votre commande, merci de bien remplir ce formulaire : ";
+    intro.className = 'client__intro';
 
-const clientLastName = document.createElement('label');
-divLastName.appendChild(clientLastName);
-clientLastName.textContent = "Nom : ";
-clientLastName.className = 'form__nom__label';
+    // création du form
+    const form = document.createElement('form');
+    divClient.appendChild(form);
+    form.className = 'form';
 
-const clientLastNameInput = document.createElement('input');
-clientLastNameInput.setAttribute("type","texte");
-divLastName.appendChild(clientLastNameInput);
-clientLastNameInput.className = 'form__nom__input';
+    // ajout du prenom au formulaire
+    const divFirstName = document.createElement('div');
+    form.appendChild(divFirstName);
+    divFirstName.className = 'form__prenom';
 
-// ajout de email
-const divEmail = document.createElement('div');
-form.appendChild(divEmail);
-divEmail.className = 'form__email';
+    const clientFirstName = document.createElement('label');
+    divFirstName.appendChild(clientFirstName);
+    clientFirstName.textContent = "Prenom : ";
+    clientFirstName.className = 'form__prenom__label';
+    clientFirstName.setAttribute('for', 'prénom');
 
-const clientEmail = document.createElement('label');
-divEmail.appendChild(clientEmail);
-clientEmail.textContent = "@ : ";
-clientEmail.className = 'form__email__label';
+    const clientFirstNameInput = document.createElement('input');
+    clientFirstNameInput.setAttribute("type","texte");
+    divFirstName.appendChild(clientFirstNameInput);
+    clientFirstNameInput.className = 'form__prenom__input';
+    clientFirstNameInput.setAttribute('name', 'prénom');
 
-const clientEmailInput = document.createElement('input');
-clientEmailInput.setAttribute("type","email");
-divEmail.appendChild(clientEmailInput);
-clientEmailInput.className = 'form__email__input';
+    // ajout du nom au formulaire
+    const divLastName = document.createElement('div');
+    form.appendChild(divLastName);
+    divLastName.className = 'form__nom';
 
-// création de la partie adresse
-const divAdresse = document.createElement('div');
-form.appendChild(divAdresse);
-divAdresse.className = 'form__adresse';
+    const clientLastName = document.createElement('label');
+    divLastName.appendChild(clientLastName);
+    clientLastName.textContent = "Nom : ";
+    clientLastName.className = 'form__nom__label';
+    clientLastName.setAttribute('for', 'nom');
 
-// ajout de l'adresse de livraison dans la partie adresse
-const divRue = document.createElement('div');
-divAdresse.appendChild(divRue);
-divRue.className = 'form__adresse__block';
+    const clientLastNameInput = document.createElement('input');
+    clientLastNameInput.setAttribute("type","texte");
+    divLastName.appendChild(clientLastNameInput);
+    clientLastNameInput.className = 'form__nom__input';
+    clientLastNameInput.setAttribute('name', 'nom');
 
-const clientRue = document.createElement('label');
-divRue.appendChild(clientRue);
-clientRue.textContent = "Adresse : "
-clientRue.className = 'form__adresse__block__label';
+    // ajout de email
+    const divEmail = document.createElement('div');
+    form.appendChild(divEmail);
+    divEmail.className = 'form__email';
 
-const clientRueInput = document.createElement('textarea');
-divRue.appendChild(clientRueInput);
-clientRueInput.className = 'form__adresse__block__textarea';
+    const clientEmail = document.createElement('label');
+    divEmail.appendChild(clientEmail);
+    clientEmail.textContent = "@ : ";
+    clientEmail.className = 'form__email__label';
+    clientEmail.setAttribute('for', 'email');
 
-// ajout de la ville dans la partie adresse
-const divVille = document.createElement('div');
-divAdresse.appendChild(divVille);
-divVille.className = 'form__adresse__ville';
+    const clientEmailInput = document.createElement('input');
+    clientEmailInput.setAttribute("type","email");
+    divEmail.appendChild(clientEmailInput);
+    clientEmailInput.className = 'form__email__input';
+    clientEmailInput.setAttribute('name', 'email');
 
-const clientVille = document.createElement('label');
-divVille.appendChild(clientVille);
-clientVille.textContent = "Ville : ";
-clientVille.className = 'form__adresse__ville__label';
+    // création de la partie adresse
+    const divAdresse = document.createElement('div');
+    form.appendChild(divAdresse);
+    divAdresse.className = 'form__adresse';
 
-const clientVilleInput = document.createElement('input');
-clientVilleInput.setAttribute("type","texte");
-divVille.appendChild(clientVilleInput);
-clientVilleInput.className = 'form__adresse__ville__input';
+    // ajout de l'adresse de livraison dans la partie adresse
+    const divRue = document.createElement('div');
+    divAdresse.appendChild(divRue);
+    divRue.className = 'form__adresse__block';
 
-// ajout du code postal dans la partie adresse
-const divCode = document.createElement('div');
-divAdresse.appendChild(divCode);
-divCode.className = 'form__adresse__code';
+    const clientRue = document.createElement('label');
+    divRue.appendChild(clientRue);
+    clientRue.textContent = "Adresse : "
+    clientRue.className = 'form__adresse__block__label';
+    clientRue.setAttribute('for', 'rue');
 
-const clientCode = document.createElement('label');
-divCode.appendChild(clientCode);
-clientCode.textContent = "Code postal : ";
-clientCode.className = 'form__adresse__code__label';
+    const clientRueInput = document.createElement('textarea');
+    divRue.appendChild(clientRueInput);
+    clientRueInput.className = 'form__adresse__block__textarea';
+    clientRueInput.setAttribute('name', 'rue');
 
-const clientCodeInput = document.createElement('input');
-clientCodeInput.setAttribute("type","texte");
-divCode.appendChild(clientCodeInput);
-clientCodeInput.className = 'form__adresse__code__input';
+    // ajout de la ville dans la partie adresse
+    const divVille = document.createElement('div');
+    divAdresse.appendChild(divVille);
+    divVille.className = 'form__adresse__ville';
 
-// ajout du button de validation
-const divVald = document.createElement('div');
-form.appendChild(divVald);
-divVald.className = 'form__divbutton';
+    const clientVille = document.createElement('label');
+    divVille.appendChild(clientVille);
+    clientVille.textContent = "Ville : ";
+    clientVille.className = 'form__adresse__ville__label';
+    clientVille.setAttribute('for', 'ville');
 
-const butVald = document.createElement('button');
-divVald.appendChild(butVald);
-butVald.textContent = "Valider votre commande";
-butVald.className = 'form__divbutton__add';
+    const clientVilleInput = document.createElement('input');
+    clientVilleInput.setAttribute("type","texte");
+    divVille.appendChild(clientVilleInput);
+    clientVilleInput.className = 'form__adresse__ville__input';
+    clientVilleInput.setAttribute('name', 'ville');
+
+    // ajout du code postal dans la partie adresse
+    const divCode = document.createElement('div');
+    divAdresse.appendChild(divCode);
+    divCode.className = 'form__adresse__code';
+
+    const clientCode = document.createElement('label');
+    divCode.appendChild(clientCode);
+    clientCode.textContent = "Code postal : ";
+    clientCode.className = 'form__adresse__code__label';
+    clientCode.setAttribute('for', 'code');
+
+    const clientCodeInput = document.createElement('input');
+    clientCodeInput.setAttribute("type","texte");
+    divCode.appendChild(clientCodeInput);
+    clientCodeInput.className = 'form__adresse__code__input';
+    clientCodeInput.setAttribute('name', 'code');
+
+    // ajout du button de validation
+    const divVald = document.createElement('div');
+    form.appendChild(divVald);
+    divVald.className = 'form__divbutton';
+
+    const butVald = document.createElement('button');
+    divVald.appendChild(butVald);
+    butVald.textContent = "Valider votre commande";
+    butVald.className = 'form__divbutton__add';
+    butVald.id = 'form__divbutton__add';
+    butVald.type = 'submit';
+    butVald.name = 'add';
+
+    butVald.addEventListener("click", () => {
+
+    });
+
+    // stocker les infos client
+     
+};
+
+
 
 
 
