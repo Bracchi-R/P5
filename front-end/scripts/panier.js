@@ -38,10 +38,7 @@ if(storedCams == null){
          camSup.textContent = "sup";
          camSup.setAttribute("id","cam__sup");
 */
-        
-
-    }
-/*
+       /*
      // on récupére l'article associé au bouton sup et suppresion de l'article
     let btnSup = document.querySelectorAll('#cam__sup');
     console.log(btnSup);
@@ -53,7 +50,10 @@ if(storedCams == null){
         });
        
     };
- */
+ */ 
+
+    }
+
 
 
     // création du prix total de la commande
@@ -78,13 +78,14 @@ if(storedCams == null){
     const boutonSup = document.createElement('button');
     suppanier.appendChild(boutonSup);
     boutonSup.textContent = "vider votre Panier";
-    /*
-    boutonSup.addEventListener("click", () => {
-        storage.clear();
-        alert('Votre panier a bien été vidé !'
-        )};
-    */
 
+    boutonSup.addEventListener("click", function (event) {
+        event.preventDefault();
+        localStorage.removeItem('newArticle');
+        alert('Votre panier a bien été vidé !')
+        window.location.href = "panier.html";
+    });
+    
     // création du formulaire du client
     const divClient = document.getElementById('client');
 
@@ -218,11 +219,32 @@ if(storedCams == null){
     butVald.type = 'submit';
     butVald.name = 'add';
 
+    // stocker les infos client
     butVald.addEventListener("click", () => {
+        let contact = {
+            firstName: clientFirstNameInput.value,
+            lastName: clientLastNameInput.value,
+            address: clientRueInput.value,
+            city: clientVilleInput.value,
+            code: clientCodeInput.value,
+            email: clientEmailInput.value,
+        }
+
+        let storedContact = JSON.parse(localStorage.getItem('contact'));
+      if(storedContact) {
+        storedContact.push(contact);
+        localStorage.setItem('contact', JSON.stringify(storedCams));
+      } else {
+        storedContact = [];
+        storedCams.push(contact);
+        localStorage.setItem('contact', JSON.stringify(storedCams));
+
+      }
+        
 
     });
 
-    // stocker les infos client
+    
      
 };
 
