@@ -2,6 +2,12 @@
 let storedCams = JSON.parse(localStorage.getItem('newArticle'));
 console.log(storedCams);
 
+let camId = [];
+for (i=0; i<storedCams.length; i++) {
+    camId.push(storedCams[i].camId);
+    console.log(camId[i]);
+};
+
 // création du panier
 const divPanier = document.getElementById('panier');
 const total = document.getElementById('total');
@@ -71,13 +77,13 @@ if(storedCams == null){
     divPanier.appendChild(priceTotal);
     priceTotal.className = 'panier__total';
     priceTotal.textContent = "Le total de votre commande est de : " + totalPrice + " €";
-
-
+    
     // création du bouton vide panier
     const suppanier = document.getElementById('suppanier');
     const boutonSup = document.createElement('button');
     suppanier.appendChild(boutonSup);
     boutonSup.textContent = "vider votre Panier";
+
 
     boutonSup.addEventListener("click", function (event) {
         event.preventDefault();
@@ -85,7 +91,7 @@ if(storedCams == null){
         alert('Votre panier a bien été vidé !')
         window.location.href = "panier.html";
     });
-    
+
     // création du formulaire du client
     const divClient = document.getElementById('client');
 
@@ -219,27 +225,65 @@ if(storedCams == null){
     butVald.type = 'submit';
     butVald.name = 'add';
 
-    // stocker les infos client
+    // stocker les infos client et le prix total
     butVald.addEventListener("click", () => {
-        let contact = {
+        let data = {
+            contact:{
             firstName: clientFirstNameInput.value,
             lastName: clientLastNameInput.value,
             address: clientRueInput.value,
             city: clientVilleInput.value,
             code: clientCodeInput.value,
             email: clientEmailInput.value,
+            },
+            
+            commande: camId,
+           /* pricetotal: total,*/
+        
         }
+        console.log(storedCams);
+/*
+        // envoie du prix total au localStorage
+        localStorage.setItem('totalPrice', totalPrice);
+        const storagePrice = localStorage.getItem('totalPrice');
+        console.log(storagePrice);
+
+
 
         let storedContact = JSON.parse(localStorage.getItem('contact'));
-      if(storedContact) {
-        storedContact.push(contact);
-        localStorage.setItem('contact', JSON.stringify(storedCams));
-      } else {
-        storedContact = [];
-        storedCams.push(contact);
-        localStorage.setItem('contact', JSON.stringify(storedCams));
+        if(storedContact) {
+            storedContact.push(contact);
+            localStorage.setItem('contact', JSON.stringify(storedContact));
+        } else {
+            storedContact = [];
+            storedContact.push(contact);
+            localStorage.setItem('contact', JSON.stringify(storedContact));
 
-      }
+        }*/
+
+        fetch("http://localhost:3000/api/cameras/order",{
+            method:"POST",
+            headers:{
+                'Content-Type':"application/json"
+            },
+            body: JSON.stringify(data)
+            })
+            .then(function(res) {
+                /* transformation en json */
+                let responce =  res.json;
+                
+                
+                console.log("vnevoeveiovneo",res);
+              })
+              
+              /* affichage d'une error */
+              .catch(function(error) {
+                alert(error)
+              })
+
+              
+
+      
         
 
     });
