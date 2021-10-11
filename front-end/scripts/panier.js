@@ -2,6 +2,7 @@
 let storedCams = JSON.parse(localStorage.getItem('newArticle'));
 console.log(storedCams);
 
+// recuperation ID de chaque produit
 let camId = [];
 for (i=0; i<storedCams.length; i++) {
     camId.push(storedCams[i].camId);
@@ -87,7 +88,7 @@ if(storedCams == null){
 
     boutonSup.addEventListener("click", function (event) {
         event.preventDefault();
-        localStorage.removeItem('newArticle');
+        localStorage.clear();
         alert('Votre panier a bien été vidé !')
         window.location.href = "panier.html";
     });
@@ -105,6 +106,7 @@ if(storedCams == null){
     const form = document.createElement('form');
     divClient.appendChild(form);
     form.className = 'form';
+    form.id = 'form';
 
     // ajout du prenom au formulaire
     const divFirstName = document.createElement('div');
@@ -225,8 +227,8 @@ if(storedCams == null){
     butVald.type = 'submit';
     butVald.name = 'add';
 
-    // stocker les infos client et le prix total
-    butVald.addEventListener("click", () => {
+    // Envoi de la requête POST au back-end 
+    form.addEventListener("click", () => {
         let data = {
             contact:{
             firstName: clientFirstNameInput.value,
@@ -237,11 +239,12 @@ if(storedCams == null){
             email: clientEmailInput.value,
             },
             
-            commande: camId,
-           /* pricetotal: total,*/
+            products: camId,
+            pricetotal: totalPrice,
+           
         
         }
-        console.log(storedCams);
+        console.log(data);
 /*
         // envoie du prix total au localStorage
         localStorage.setItem('totalPrice', totalPrice);
@@ -261,33 +264,43 @@ if(storedCams == null){
 
         }*/
 
-        fetch("http://localhost:3000/api/cameras/order",{
-            method:"POST",
-            headers:{
-                'Content-Type':"application/json"
-            },
-            body: JSON.stringify(data)
-            })
+        // Création de l'entête de la requête
+        const options = {
+        method: "POST",
+        body: JSON.stringify(order),
+        headers: { "Content-Type": "application/json" },
+        };
+
+        fetch("http://localhost:3000/api/cameras/order", options)
+        
             .then(function(res) {
-                /* transformation en json */
+                // transformation en json
                 let responce =  res.json;
                 
                 
-                console.log("vnevoeveiovneo",res);
+                //console.log("vnevoeveiovneo",res);
               })
+
+            
+            
               
-              /* affichage d'une error */
+              
+              // affichage d'une error
               .catch(function(error) {
                 alert(error)
               })
 
+
+
+
+
               
 
       
-        
+      
 
     });
-
+    
     
      
 };
