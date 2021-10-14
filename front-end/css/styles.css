@@ -37,6 +37,18 @@ header {
   margin-bottom: auto;
 }
 
+footer {
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: space-around;
+}
+footer .footer__lien {
+  text-decoration: underline;
+}
+
 .product__titre {
   margin-top: 70px;
   margin-bottom: 70px;

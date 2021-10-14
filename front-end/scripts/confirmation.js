@@ -1,17 +1,19 @@
-//récupération des données du localStorage
-let storedContact = JSON.parse(localStorage.getItem('contact'));
-console.log(storedContact);
+const resulte = window.location.search;
 
-let price = JSON.parse(localStorage.getItem('totalPrice'));
-console.log(price);
+let param = new URLSearchParams(resulte);
+
+let id = param.get("orderId");
+let nom = param.get("nom");
+console.log(resulte);
+console.log(param);
 
 // création page de confirmation
 const pageRec = document.getElementById('recap');
 
 const titre = document.createElement('h2');
 pageRec.appendChild(titre);
-titre.textContent = "Nous vous remerciont de votre commande Mme, M ";
+titre.textContent = "Nous vous remerciont de votre commande Mme, M " + nom;
 
-const prix = document.createElement('p');
-pageRec.appendChild(prix);
-prix.textContent = "Le total de votre commande est de : " + price + " €." ;
+const commandeID = document.createElement("p");
+pageRec.appendChild(commandeID);
+commandeID.textContent = "Votre numéro de commande est le " + id;

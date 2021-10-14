@@ -38,27 +38,6 @@ if(storedCams == null){
          camDiv.appendChild(camPrice);
          camPrice.textContent = storedCam.camPrice + " €";
 
-         /*
-        // // création du boutton sup de l'article
-        const camSup = document.createElement('button');
-         camDiv.appendChild(camSup);
-         camSup.textContent = "sup";
-         camSup.setAttribute("id","cam__sup");
-*/
-       /*
-     // on récupére l'article associé au bouton sup et suppresion de l'article
-    let btnSup = document.querySelectorAll('#cam__sup');
-    console.log(btnSup);
-    for (let i = 0; i < btnSup.length; i++) {
-        btnSup[i].addEventListener('click', function(event){
-
-            // empêche le rafraîchir la page au clic
-            event.preventDefault();  
-        });
-       
-    };
- */ 
-
     }
 
 
@@ -107,6 +86,7 @@ if(storedCams == null){
     divClient.appendChild(form);
     form.className = 'form';
     form.id = 'form';
+    form.setAttribute('action', '');
 
     // ajout du prenom au formulaire
     const divFirstName = document.createElement('div');
@@ -124,6 +104,9 @@ if(storedCams == null){
     divFirstName.appendChild(clientFirstNameInput);
     clientFirstNameInput.className = 'form__prenom__input';
     clientFirstNameInput.setAttribute('name', 'prénom');
+    clientFirstNameInput.required = true;
+    
+    
 
     // ajout du nom au formulaire
     const divLastName = document.createElement('div');
@@ -141,6 +124,8 @@ if(storedCams == null){
     divLastName.appendChild(clientLastNameInput);
     clientLastNameInput.className = 'form__nom__input';
     clientLastNameInput.setAttribute('name', 'nom');
+    clientLastNameInput.required = true;
+    
 
     // ajout de email
     const divEmail = document.createElement('div');
@@ -158,6 +143,7 @@ if(storedCams == null){
     divEmail.appendChild(clientEmailInput);
     clientEmailInput.className = 'form__email__input';
     clientEmailInput.setAttribute('name', 'email');
+    clientEmailInput.required = true;
 
     // création de la partie adresse
     const divAdresse = document.createElement('div');
@@ -179,6 +165,7 @@ if(storedCams == null){
     divRue.appendChild(clientRueInput);
     clientRueInput.className = 'form__adresse__block__textarea';
     clientRueInput.setAttribute('name', 'rue');
+    clientRueInput.required = true;
 
     // ajout de la ville dans la partie adresse
     const divVille = document.createElement('div');
@@ -196,6 +183,7 @@ if(storedCams == null){
     divVille.appendChild(clientVilleInput);
     clientVilleInput.className = 'form__adresse__ville__input';
     clientVilleInput.setAttribute('name', 'ville');
+    clientVilleInput.required = true;
 
     // ajout du code postal dans la partie adresse
     const divCode = document.createElement('div');
@@ -207,12 +195,15 @@ if(storedCams == null){
     clientCode.textContent = "Code postal : ";
     clientCode.className = 'form__adresse__code__label';
     clientCode.setAttribute('for', 'code');
+    
 
     const clientCodeInput = document.createElement('input');
     clientCodeInput.setAttribute("type","texte");
     divCode.appendChild(clientCodeInput);
     clientCodeInput.className = 'form__adresse__code__input';
     clientCodeInput.setAttribute('name', 'code');
+    clientCodeInput.required = true;
+    
 
     // ajout du button de validation
     const divVald = document.createElement('div');
@@ -227,8 +218,14 @@ if(storedCams == null){
     butVald.type = 'submit';
     butVald.name = 'add';
 
+
+
+    
+
     // Envoi de la requête POST au back-end 
-    form.addEventListener("click", () => {
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        
         let data = {
             contact:{
             firstName: clientFirstNameInput.value,
@@ -240,104 +237,32 @@ if(storedCams == null){
             },
             
             products: camId,
-            pricetotal: totalPrice,
-           
-        
         }
         console.log(data);
-/*
-        // envoie du prix total au localStorage
-        localStorage.setItem('totalPrice', totalPrice);
-        const storagePrice = localStorage.getItem('totalPrice');
-        console.log(storagePrice);
 
-
-
-        let storedContact = JSON.parse(localStorage.getItem('contact'));
-        if(storedContact) {
-            storedContact.push(contact);
-            localStorage.setItem('contact', JSON.stringify(storedContact));
-        } else {
-            storedContact = [];
-            storedContact.push(contact);
-            localStorage.setItem('contact', JSON.stringify(storedContact));
-
-        }*/
 
         // Création de l'entête de la requête
         const options = {
         method: "POST",
-        body: JSON.stringify(order),
+        body: JSON.stringify(data),
         headers: { "Content-Type": "application/json" },
         };
 
         fetch("http://localhost:3000/api/cameras/order", options)
         
-            .then(function(res) {
-                // transformation en json
-                let responce =  res.json;
-                
-                
-                //console.log("vnevoeveiovneo",res);
-              })
+            .then((res) => res.json())
 
-            
-            
-              
-              
+            .then((data) => {
+                window.location.href = "../front-end/confirmation.html?orderId=" + data.orderId 
+                + "&nom=" + data.contact.lastName 
+            })
+
               // affichage d'une error
               .catch(function(error) {
                 alert(error)
               })
-
-
-
-
-
-              
-
-      
-      
-
-    });
-    
-    
+              localStorage.clear();
+    });   
      
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-// création de la div pour une cam
-const camDiv = document.createElement('div');
-divPanier.appendChild(camDiv);
-
-// création du p pour le nom de la cam
-const camName = document.createElement('p');
-camDiv.appendChild(camName);
-*/
