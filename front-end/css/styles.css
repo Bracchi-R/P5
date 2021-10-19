@@ -134,6 +134,7 @@ footer .footer__lien {
 .panier .panier__article p {
   margin-left: 10px;
 }
+
 .client .form {
   text-align: left;
 }
@@ -165,13 +166,12 @@ footer .footer__lien {
   display: block;
 }
 .client .form .form__adresse {
-  display: flex;
-  margin-bottom: 5px;
-  margin-left: 5px;
+  margin-left: 30px;
 }
 .client .form .form__adresse .form__adresse__block {
   display: flex;
   margin-right: 5px;
+  margin-bottom: 5px;
 }
 .client .form .form__adresse .form__adresse__block .form__adresse__block__label {
   width: 7em;
@@ -180,6 +180,7 @@ footer .footer__lien {
 .client .form .form__adresse .form__adresse__ville {
   display: flex;
   margin-right: 5px;
+  margin-bottom: 5px;
 }
 .client .form .form__adresse .form__adresse__ville .form__adresse__ville__label {
   width: 7em;
@@ -187,10 +188,14 @@ footer .footer__lien {
 }
 .client .form .form__adresse .form__adresse__code {
   display: flex;
+  margin-bottom: 5px;
 }
 .client .form .form__adresse .form__adresse__code .form__adresse__code__label {
   width: 7em;
   display: block;
+}
+.client .form .form__adresse .form__adresse__code .form__adresse__code__input {
+  -moz-appearance: textfield;
 }
 .client .form .form__divbutton .form__divbutton__add {
   width: 150px;

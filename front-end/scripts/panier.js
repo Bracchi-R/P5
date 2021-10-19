@@ -2,61 +2,88 @@
 let storedCams = JSON.parse(localStorage.getItem('newArticle'));
 console.log(storedCams);
 
-// recuperation ID de chaque produit
-let camId = [];
-for (i=0; i<storedCams.length; i++) {
-    camId.push(storedCams[i].camId);
-    console.log(camId[i]);
-};
+
 
 // création du panier
 const divPanier = document.getElementById('panier');
 const total = document.getElementById('total');
 
+
+// creation element pour un article
+function newElement(balise,classe,parrent){
+    let element = document.createElement(balise);
+    parrent.appendChild(element);
+        if (classe != null){
+            element.className = classe;
+        }
+    
+
+    return element;
+};
+
+
 if(storedCams == null){
     // si le panier est vide
-    const panierVide = document.createElement('p');
-    divPanier.appendChild(panierVide);
+
+    const panierVide = newElement('p',null,divPanier)
     panierVide.textContent = "Votre panier est vide"
     
 } else {
-    // si il y a des article dans le panier 
-    for (storedCam of storedCams) {
 
-        // création de la div pour une cam
-        const camDiv = document.createElement('div');
-        divPanier.appendChild(camDiv);
-        camDiv.className = 'panier__article';
-
-        // création du p pour le nom de la cam
-        const camName = document.createElement('p');
-        camDiv.appendChild(camName);
-        camName.textContent = storedCam.camName;
-
-         // création du p pour le prix de la cam
-         const camPrice = document.createElement('p');
-         camDiv.appendChild(camPrice);
-         camPrice.textContent = storedCam.camPrice + " €";
-
-    }
-
-
-
-    // création du prix total de la commande
-
-    let total = []
-    for (storedCam of storedCams) {
-        let totalCam = storedCam.camPrice;
-        total.push(totalCam);
-    };
-
-    const reducer = (accumulator, currentValue) => accumulator + currentValue;
-    const totalPrice = total.reduce(reducer, 0);
 
     const priceTotal = document.createElement('div');
     divPanier.appendChild(priceTotal);
     priceTotal.className = 'panier__total';
-    priceTotal.textContent = "Le total de votre commande est de : " + totalPrice + " €";
+    
+    let totalPrix = 0;
+
+    // si il y a des article dans le panier 
+    for (storedCam of storedCams) {
+
+        
+        
+        // recuper des ellement si misse a jour des infos
+        fetch(`http://localhost:3000/api/cameras/${storedCam.camId}`)
+    
+        .then(function(res) {
+            /* transformation en json */
+            return res.json()
+          })
+          /* recuteration des articles */
+          
+          .then(function(articles) {
+            console.log(articles);
+            // création de la div pour une cam
+            const camDiv = newElement('div','panier__article',divPanier)
+        
+            // création du p pour le nom de la cam
+            const camName = newElement('p',null,camDiv)
+            camName.textContent = articles.name;
+
+            // création du p pour la quantiter
+            const camQuantiter = newElement('p',null,camDiv)
+            camQuantiter.textContent = "QTE : " + storedCam.camQuantiter;
+
+            // création du p pour l objectife
+            const camobjectife = newElement('p',null,camDiv)
+            camobjectife.textContent = storedCam.camObjectife;
+
+            // création du p pour le prix de la cam
+            const camPrice = newElement('p',null,camDiv)
+            camPrice.textContent = (articles.price / 100) * parseInt(storedCam.camQuantiter, 10) + " €";
+
+            let totalCam = (articles.price / 100) * parseInt(storedCam.camQuantiter, 10);
+            totalPrix = totalPrix + totalCam;
+            priceTotal.textContent = "Le total de votre commande est de : " + totalPrix + " €";
+            })
+
+          /* affichage d'une error */
+          .catch(function(error) {
+            alert(error)
+          }) 
+
+    }
+
     
     // création du bouton vide panier
     const suppanier = document.getElementById('suppanier');
@@ -64,7 +91,7 @@ if(storedCams == null){
     suppanier.appendChild(boutonSup);
     boutonSup.textContent = "vider votre Panier";
 
-
+    // event pour vider le panier
     boutonSup.addEventListener("click", function (event) {
         event.preventDefault();
         localStorage.clear();
@@ -198,10 +225,11 @@ if(storedCams == null){
     
 
     const clientCodeInput = document.createElement('input');
-    clientCodeInput.setAttribute("type","texte");
+    clientCodeInput.setAttribute("type","number");
     divCode.appendChild(clientCodeInput);
     clientCodeInput.className = 'form__adresse__code__input';
     clientCodeInput.setAttribute('name', 'code');
+    clientCodeInput.setAttribute('maxlength', '5');
     clientCodeInput.required = true;
     
 
@@ -220,7 +248,12 @@ if(storedCams == null){
 
 
 
-    
+    // recuperation ID de chaque produit
+    let camId = [];
+    for (i=0; i<storedCams.length; i++) {
+        camId.push(storedCams[i].camId);
+        console.log(camId[i]);
+    };
 
     // Envoi de la requête POST au back-end 
     form.addEventListener("submit", (event) => {

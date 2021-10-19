@@ -64,7 +64,7 @@ function displayArticle(article) {
   //création p de Ref pour afficher le prix
   const price = document.createElement('p');
   ref.appendChild(price);
-  price.textContent = "Prix : " + article.price + " €";
+  price.textContent = "Prix : " + (article.price / 100) + " €";
   price.className = 'cam__card__ref__price';
   
 }

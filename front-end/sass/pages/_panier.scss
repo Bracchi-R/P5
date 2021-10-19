@@ -13,17 +13,13 @@
             margin-left: 10px;
         }
 
-        .cam__sup {
-           
-        }
+        
     }
 }
 
 
 .client {
-    .client__intro {
-        
-    }
+    
 
     .form {
         text-align: left;
@@ -38,9 +34,6 @@
                 display: block;
             }
 
-            .form__prenom__input {
-
-            } 
         }
 
         .form__nom {
@@ -53,9 +46,7 @@
                 display: block;
             }
 
-            .form__nom__input {
-
-            } 
+            
         }
 
         .form__email {
@@ -68,53 +59,48 @@
                 display: block;
             }
 
-            .form__email__input {
-
-            } 
+            
         }
 
         .form__adresse {
-            display: flex;
-            margin-bottom: 5px;
-            margin-left: 5px;
+            margin-left: 30px;
 
             .form__adresse__block {
                 display: flex;
                 margin-right: 5px;
+                margin-bottom: 5px;;
 
                 .form__adresse__block__label {
                     width: 7em;
                     display: block;
                 }
 
-                .form__adresse__block__textarea {
-
-                }
+            
             }
 
             .form__adresse__ville {
                 display: flex;
                 margin-right: 5px;
+                margin-bottom: 5px;;
 
                 .form__adresse__ville__label {
                     width: 7em;
                     display: block;
                 }
 
-                .form__adresse__ville__input {
-
-                }
+                
             }
 
             .form__adresse__code {
                 display: flex;
+                margin-bottom: 5px;;
                 .form__adresse__code__label {
                     width: 7em;
                     display: block;
                 }
 
                 .form__adresse__code__input {
-
+                    -moz-appearance: textfield
                 }
             } 
         }

@@ -81,8 +81,15 @@ function hydrateArticle(article) {
     // ajout du prix aux details
     const price = document.createElement('p');
     detail.appendChild(price);
-    price.textContent = "Prix : " + article.price + " €";
+    price.textContent = "Prix : " + (article.price / 100) + " €";
     price.className = 'carte__article__detail__price';
+
+    // ajout de la quantiter
+    const quantiter = document.createElement('input');
+    detail.appendChild(quantiter);
+    quantiter.setAttribute("type","number");
+    quantiter.setAttribute('value', "1");
+    quantiter.className = 'carte__article__quantiter';
     
     // création de la div button
     const button = document.createElement('div');
@@ -97,16 +104,45 @@ function hydrateArticle(article) {
 
     /* envoi dans le storage au click */
     add.addEventListener("click", () => {
+      let quant = quantiter.value;
+      let objc = type.value;
+
       let data = {
         camName: article.name,
         camId: article._id,
         camPrice: article.price,
+        camQuantiter: quant,
+        camObjectife: objc,
       };
 
       let storedCams = JSON.parse(localStorage.getItem('newArticle'));
       if(storedCams) {
-        storedCams.push(data);
-        localStorage.setItem('newArticle', JSON.stringify(storedCams));
+        
+        let corespondance = 0;
+        console.log(storedCams);
+        console.log(data);
+        for (i=0; i<storedCams.length; i++){
+          if(data.camId == storedCams[i].camId && data.camObjectife == storedCams[i].camObjectife){
+            corespondance++
+          }
+
+        }
+
+        if(corespondance>0){
+          for(i=0; i<storedCams.length; i++){
+            if(data.camId == storedCams[i].camId && data.camObjectife == storedCams[i].camObjectife){
+              storedCams[i].camQuantiter = parseInt(storedCams[i].camQuantiter, 10) + parseInt(data.camQuantiter, 10)
+              localStorage.setItem('newArticle', JSON.stringify(storedCams));
+            }
+          }
+        }
+        else {
+          storedCams.push(data);
+          localStorage.setItem('newArticle', JSON.stringify(storedCams));
+        }
+
+
+        
       } else {
         storedCams = [];
         storedCams.push(data);
